@@ -1,0 +1,96 @@
+
+{% extends "navbar.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+<div class="panel-body">
+    <div class="col-sm-10 container">
+        <form id="user_inputs" method="POST" action="{{ url_for('data_capture') }}">
+
+
+            <div class="form-group" >
+ 
+            <!-- 1. TIPO_DE_GASTO -->                        			
+                <label for="tipo_gasto">Tipo de Gasto</label>        
+                <select class="form-control" id="tipo_gasto" data-max-options="{{ velocity_max | safe }}" >
+                					{% for w in expense_category %}
+                						<option data-option={{ w | safe }} value={{ w | safe }}> {{ w | safe }}</option>
+                					{% endfor %}
+                </select>
+             </div>
+      
+                 <br>            
+            <!-- 1.1 FORM SUB-TIPO_DE_GASTO -->
+             	<fieldset class="form-group">
+                <t><label for="sub_tipo_gasto">Sub Categoria</label></t>
+                <select class="form-control form-control-sm" id="sub_tipo_gasto" data-live-search="true" data-max-options="{{ velocity_max | safe }}">
+                					{% for w in expense_sub_category %}
+                						<option  data-option={{ w | safe }} value={{ w | safe }}>{{ w | safe }}</option>
+                					{% endfor %}
+                </select>             
+                       
+                <br> 
+                <!-- 1.1 PROVEDOR -->
+             </fieldset>   
+              <fieldset class="form-group">
+                <label for="tipo_gasto">Provedor</label>
+                
+                <select class="selectpicker" id="provedor" onchange='ajaxFirstOnChange()' data-live-search="true" data-max-options="{{ velocity_max | safe }}" name="provedor" >
+                    {% for w in vendor %}
+                        <option> {{ w | safe }}  </option>
+                    {% endfor %}                    
+                </select>  
+                
+                <br> 
+                <br> 
+                <br> 
+              
+                <select id='ddl_first_lookup' onchange='ajaxFirstOnChange()' value='' class='selectpicker'>
+                    {% for w in vendor %}
+                        <option> {{ w | safe }}  </option>
+                    {% endfor %}    
+            </fieldset>
+             	<fieldset class="form-group">
+                <select id='ddl_second_lookup' onchange='ajaxSecondOnChange(this.value)' class='selectpicker'>
+                <select id="ddl_third_lookup" onchange='ajaxThirdLookup(this.value)' class='selectpicker'></select>                          
+
+                <br> 
+                <p id="demo">hey</p>
+                <br>        
+                 
+                <label > Fecha de Pago </label>
+                <div class=' col-sm-5 input-group date' id='datetimepicker1' data-provide="datepicker">
+                    <input type='text' class="form-control" />
+                    <span class=" input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+              </fieldset>
+                <br> 
+                        
+                <button type="capturar" class="btn btn-block"> Capturar </button>
+                          
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block chart %}
+	<script>
+       $('.select').selectpicker();
+       
+       
+       $('.datepicker').datepicker();
+       
+       function ajaxFirstOnChange() {
+    var x = document.getElementById("provedor").value;
+    document.getElementById("demo").innerHTML = "You selected: " + x;
+};
+	</script>
+{% endblock %}
+
