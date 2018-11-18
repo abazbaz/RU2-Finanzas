@@ -10,15 +10,41 @@ from flask import Flask, render_template, jsonify, request, redirect, make_respo
 import pandas as pd
 import numpy as np
 import os
-
+import MySQLdb 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
+
+
+def connect_mysql():
+    db = MySQLdb.connect(host="shoesclothing.net",user="gezsa001",
+                  passwd="gez9105ru2",db="Gez_pruebas")
+    
+    # prepare a cursor object using cursor() method
+    cursor = db.cursor()
+    
+    # Drop table if it already exist using execute() method.
+    cursor.execute("DROP TABLE IF EXISTS EMPLOYEE")
+    
+    # Create table as per requirement
+    sql = """CREATE TABLE EMPLOYEE (
+             FIRST_NAME  CHAR(20) NOT NULL,
+             LAST_NAME  CHAR(20),
+             AGE INT,  
+             SEX CHAR(1),
+             INCOME FLOAT )"""
+
+    cursor.execute(sql)
+    
+    db.close()
+    return
 
 def index():
     vendor = list(['Gosh','Caterpillar','Flexi'])
     expense_category = list(['bazbaz','adrian'])
     expense_sub_category = list(['a','ab','gg'])
+    
+    
     
 #    vendor = ['Agregar Nuevo Provedor'] + vendor
 #    expense_category = ['Agregar Nueva Categoria','Una categoria muuy muuy muuy muuy muuy muuy muuy larga'] + expense_category
@@ -37,6 +63,8 @@ def index():
 @app.route('/data_capture', methods=['GET', 'POST'])
 
 def data_capture():
+    
+    connect_mysql()
     vendor = list(['Gosh','Caterpillar','Flexi'])
     expense_category = list(['bazbaz','adrian'])
     expense_sub_category = list(['a','ab','gg'])
