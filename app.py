@@ -13,7 +13,7 @@ import os
 import MySQLdb 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
+
 
 
 def connect_mysql():
@@ -39,6 +39,8 @@ def connect_mysql():
     db.close()
     return
 
+
+@app.route('/', methods=['GET', 'POST'])
 def index():
     vendor = list(['Gosh','Caterpillar','Flexi'])
     expense_category = list(['bazbaz','adrian'])
