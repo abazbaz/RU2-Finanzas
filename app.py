@@ -10,33 +10,26 @@ from flask import Flask, render_template, jsonify, request, redirect, make_respo
 import pandas as pd
 import numpy as np
 import os
-import MySQLdb 
+import pyodbc
 app = Flask(__name__)
 
 
 
 
 def connect_mysql():
-    db = MySQLdb.connect(host="shoesclothing.net",user="gezsa001",
-                  passwd="gez9105ru2",db="Gez_pruebas")
-    
-    # prepare a cursor object using cursor() method
-    cursor = db.cursor()
-    
-    # Drop table if it already exist using execute() method.
-    cursor.execute("DROP TABLE IF EXISTS EMPLOYEE")
-    
-    # Create table as per requirement
-    sql = """CREATE TABLE EMPLOYEE (
-             FIRST_NAME  CHAR(20) NOT NULL,
-             LAST_NAME  CHAR(20),
-             AGE INT,  
-             SEX CHAR(1),
-             INCOME FLOAT )"""
 
-    cursor.execute(sql)
+    driver = '/usr/local/lib/libmsodbcsql.13.dylib'
+    driver = '{ODBC Driver 17 for SQL Server}'
     
-    db.close()
+    cnxn = pyodbc.connect("Driver="+driver+";"
+                            "Server=shoesclothing.net;"
+                            "Database=Gez_pruebas;"
+                            "uid=gezsa001;pwd=gez9105ru2")
+    
+    
+    df = pd.read_sql_query('select TOP 5 * from mov_vtasdevcli', cnxn)
+    
+    print(df.head())
     return
 
 
