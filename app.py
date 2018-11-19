@@ -70,8 +70,13 @@ def data_capture():
 #    expense_category = ['Agregar Nueva Categoria','Una categoria muuy muuy muuy muuy muuy muuy muuy larga'] + expense_category
 #    expense_sub_category = ['Agregar Nueva Sub-categoria'] + expense_sub_category
     
+    print(os.system('ls'))
+    print(os.system('ls ../'))
+    print(os.system('ls ../../'))
+
     user_inputs = dict(request.form)
     print(user_inputs)
+    
     
     return render_template("data_capture.html",
                            navbar_data_capture = 'active',

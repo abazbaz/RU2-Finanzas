@@ -10,50 +10,54 @@
     <div class="panel-heading"> Hey </div>
       <br>
       
-
+       <div class="panel panel-default">
       
 
-        <form id="user_inputs" method="POST" action="{{ url_for('data_capture') }}">
+            <form id="user_inputs" method="POST" action="{{ url_for('data_capture') }}">
 
             <!-- https://developer.snapappointments.com/bootstrap-select/examples/ -->
             
-            
-            
-            <label for="beneficiario"> Beneficiario </label> <br>
-            <div class="form-group" >
-                
-                <select class="selectpicker" id="beneficiario" name="beneficiario" onchange='ajaxFirstOnChange()' data-live-search="true" data-max-options="{{ velocity_max | safe }}" title="Seleccione un Beneficiario..." data-width="800px" >
-                    {% for w in vendor %}
-                        <option> {{ w | safe }}  </option>
-                    {% endfor %}                    
-                </select>    
-            </div>
 
-            <div class="form-group" >
-                <label for="categoria"> Categoria </label><br> 
-                <select class="selectpicker" id="categoria" onchange='ajaxFirstOnChange()' data-live-search="true" data-max-options="{{ velocity_max | safe }}" name="categoria" title="Seleccione una Categoria de Gasto..." data-width="800px" >
-                    {% for w in vendor %}
-                        <option> {{ w | safe }}  </option>
-                    {% endfor %}                    
-                </select>   
-            </div>
-            <br>
-            <label > Fecha de Pago </label>
-            <div class=' col-sm-5 input-group date' id='datetimepicker1' data-provide="datepicker" name="categoria" title="Seleccione una Categoria de Gasto...">
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-            
-            <heading>{{message}}</heading>
-            <heading>{{message2}}</heading>
-            <heading>{{message3}}</heading>
-            
-                       
-             <br><button type="capturar" class="btn btn-block"> Capturar </button> <br>
-                          
-    </form>
+                <label for="beneficiario"> <tab1> Beneficiario </tab1> </label> <br>
+                <div class="form-group" >
+                    
+                   <tab1>  <select class="selectpicker" id="beneficiario" name="beneficiario" onchange='ajaxFirstOnChange()' data-live-search="true" data-max-options="{{ velocity_max | safe }}" title="Seleccione un Beneficiario..." data-width="800px" >
+                        {% for w in vendor %}
+                            <option> {{ w | safe }}  </option>
+                        {% endfor %}                    
+                    </select>    </tab1>
+                </div>
+    
+                <div class="form-group" >
+                    <label for="categoria"><tab1> Categoria </tab1> </label><br> 
+                    <tab1>  <select class="selectpicker" id="categoria" onchange='ajaxFirstOnChange()' data-live-search="true" data-max-options="{{ velocity_max | safe }}" name="categoria" title="Seleccione una Categoria de Gasto..." data-width="800px" >
+                        {% for w in vendor %}
+                            <option> {{ w | safe }}  </option>
+                        {% endfor %}                    
+                    </select>   </tab1>
+                </div>
+                <br>
+                <label > <tab1>Fecha de Pago </tab1></label>
+                
+                <tab1><div class='col-sm-5 input-group date' id='datetimepicker1' data-provide="datepicker" name="categoria" title="Seleccione una Categoria de Gasto..." padding="70px">
+                     <input type='text' class="form-control" /> 
+                    <span class="input-group-addon"> 
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span> 
+                </div></tab1>
+                   
+                
+                <h2><div_custom>{{message}}</div_custom></h2>
+                <tab1> <heading>{{message2}}</heading></tab1>
+                <tab1><heading>{{message3}}</heading></tab1>
+                
+                           
+                
+                 <tab1><br><button type="capturar" class="button"> Capturar 2 </button> <br></tab1>
+                 
+                 <tab1><br><button_2 > Capturar </button_2> <br></tab1>
+                      
+        </form>
 
     </div>
 
