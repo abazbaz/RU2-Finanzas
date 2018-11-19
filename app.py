@@ -19,7 +19,7 @@ app = Flask(__name__)
 def connect_mysql():
 
     driver = '/usr/local/lib/libmsodbcsql.13.dylib'
-    driver = '{ODBC Driver 17 for SQL Server}'
+    driver = '{ODBC Driver 13 for SQL Server}'
     
     cnxn = pyodbc.connect("Driver="+driver+";"
                             "Server=shoesclothing.net;"
