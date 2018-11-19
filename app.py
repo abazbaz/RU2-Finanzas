@@ -21,7 +21,7 @@ def connect_mysql():
     driver = '/usr/local/lib/libmsodbcsql.13.dylib'
     driver = '{ODBC Driver 13 for SQL Server}'
     
-    cnxn = pyodbc.connect("Driver="+driver+";"
+    cnxn = pyodbc.connect(
                             "Server=shoesclothing.net;"
                             "Database=Gez_pruebas;"
                             "uid=gezsa001;pwd=gez9105ru2")
