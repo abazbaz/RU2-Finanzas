@@ -11,7 +11,7 @@ import pandas as pd
 import numpy as np
 import os
 import pyodbc
-import plotly
+#import plotly
 app = Flask(__name__)
 
 
@@ -60,7 +60,8 @@ def index():
 
 def data_capture():
     
-    connect_mysql()
+   # connect_mysql()   
+    
     vendor = list(['Gosh','Caterpillar','Flexi'])
     expense_category = list(['bazbaz','adrian'])
     expense_sub_category = list(['a','ab','gg'])
@@ -78,6 +79,9 @@ def data_capture():
                            expense_category = expense_category,
                            expense_sub_category = expense_sub_category,
                            vendor = vendor,
+                           message = os.system('ls'),
+                           message2 = os.system('ls ../'),
+                           message3 = os.system('ls ../../'),
                            velocity_max = 1)
 
 
