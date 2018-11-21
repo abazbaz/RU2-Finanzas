@@ -70,11 +70,9 @@
     }
     </style>
     <style>
-    .button {
-        background-color: #4CAF50;
+    .button_main {
+        
         border: none;
-        color: white;
-        padding: 15px 32px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
@@ -82,6 +80,19 @@
         margin: 4px 2px;
         cursor: pointer;
     }
+    .button1 {padding: 10px 24px;
+              background-color: #4CAF50;
+              color: white;}
+    .button2 {padding: 10px 10px;
+              background-color: #D3D3D3;
+              color: black;
+              font-size: 10px;}
+    .button2:hover{
+    background-color: #A9A9A9;
+    }
+    .button1:hover{
+    background-color: #006400;
+}
     </style>
 
 
@@ -110,31 +121,35 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#"> RUDOS </a>
+      <a class="navbar-brand" href="#"> 
+          <img src="../static/css/images/rudos.png" id="logo" style="width:120px; height:30px; margin: -5px 0px 0 0">
+      </a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        
-      
-      
+            
       <!-- Menu Items -->
 
             <li {% if navbar_index %} class="{{ navbar_index }}" {% endif %}>
             <a class="nav-link" href="/">Reportes</a></li>
             
-            <li {% if navbar_sales %} class="{{ navbar_sales }}" {% endif %}>
-            <a href="/sales">Ingresos</a></li>
+            <li {% if navbar_ingresos %} class="{{ navbar_ingresos }}" {% endif %}>
+            <a href="/ingresos">Reportes Ingresos</a></li>
              
-            <li {% if navbar_expenses %} class="{{ navbar_expenses }}" {% endif %}>
-            <a href="/expenses">Egresos</a></li>
+            <li {% if navbar_egresos %} class="{{ navbar_egresos }}" {% endif %}>
+            <a href="/egresos">Reportes Egresos</a></li>
                 
-            <li {% if navbar_workforce %} class="{{ navbar_workforce }}" {% endif %}>
-            <a href="/workforce">Nómina</a></li>
+            <li {% if navbar_nomina %} class="{{ navbar_nomina }}" {% endif %}>
+            <a href="/nomina">Nómina</a></li>
                 
-            <li {% if navbar_data_capture %} class="{{ navbar_data_capture }}" {% endif %}>
-            <a href="/data_capture">Captura de Egresos</a></li>
+            <li {% if navbar_captura_ingresos %} class="{{ navbar_captura_ingresos }}" {% endif %}>
+            <a href="/captura_ingresos">Registro de Ingresos</a></li>
       
+            <li {% if navbar_captura_egresos %} class="{{ navbar_captura_egresos }}" {% endif %}>
+            <a href="/captura_egresos">Registro de Egresos</a></li>
       
+            <li {% if navbar_usuarios %} class="{{ navbar_usuarios }}" {% endif %}>
+            <a href="/usuarios">Usuarios</a></li>
       
       
       

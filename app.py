@@ -56,15 +56,14 @@ def index():
                            velocity_max = 1)
     
     
-@app.route('/data_capture', methods=['GET', 'POST'])
+@app.route('/captura_egresos', methods=['GET', 'POST'])
 
-def data_capture():
-    
-   # connect_mysql()   
+def captura_egresos():
     
     vendor = list(['Gosh','Caterpillar','Flexi'])
-    expense_category = list(['bazbaz','adrian'])
-    expense_sub_category = list(['a','ab','gg'])
+    categoria = list(['categoria_1','categoria_2','categoria_3','categoria_4','categoria_5'])
+    sub_categoria = list(['sub_categoria_1','sub_categoria_2','sub_categoria_3','sub_categoria_4','sub_categoria_5'])
+    forma_pago = list(['forma_pago_1','forma_pago_2','forma_pago_3','forma_pago_4','forma_pago_5'])
     
 #    vendor = ['Agregar Nuevo Provedor'] + vendor
 #    expense_category = ['Agregar Nueva Categoria','Una categoria muuy muuy muuy muuy muuy muuy muuy larga'] + expense_category
@@ -78,17 +77,62 @@ def data_capture():
     print(user_inputs)
     
     
-    return render_template("data_capture.html",
+    return render_template("captura_egresos.html",
                            navbar_data_capture = 'active',
-                           title = "Captura de Gastos",
-                           expense_category = expense_category,
-                           expense_sub_category = expense_sub_category,
+                           title = "Registro de Egresos",
+                           categoria = categoria,
+                           sub_categoria = sub_categoria,
+                           forma_pago = forma_pago,
                            vendor = vendor,
-                           message = os.system('ls'),
-                           message2 = os.system('ls ../'),
-                           message3 = os.system('ls ../../'),
                            velocity_max = 1)
 
+
+
+@app.route('/captura_ingresos', methods=['GET', 'POST'])
+
+def captura_ingresos():
+    
+    tipo_ingreso = list(['Ventas','Concepto'])
+    cuenta = list(['cuenta_1','cuenta_2','cuenta_2','cuenta_4','cuenta_5'])
+    centro_de_costo = list(['centro_1','centro_2','sub_centro_3','centro_4','centro_5'])
+    forma_pago = list(['forma_pago_1','forma_pago_2','forma_pago_3','forma_pago_4','forma_pago_5'])
+    
+
+    user_inputs = dict(request.form)
+    print(user_inputs)
+    
+    
+    return render_template("captura_ingresos.html",
+                           navbar_captura_ingresos = 'active',
+                           title = "Registro de Ingresos",
+                           centro_de_costo = centro_de_costo,
+                           cuenta = cuenta,
+                           forma_pago = forma_pago,
+                           tipo_ingreso = tipo_ingreso,
+                           velocity_max = 1)
+    
+@app.route('/nomina', methods=['GET', 'POST'])
+
+def nomina():
+    
+    tipo_ingreso = list(['Ventas','Concepto'])
+    cuenta = list(['cuenta_1','cuenta_2','cuenta_2','cuenta_4','cuenta_5'])
+    centro_de_costo = list(['centro_1','centro_2','sub_centro_3','centro_4','centro_5'])
+    forma_pago = list(['forma_pago_1','forma_pago_2','forma_pago_3','forma_pago_4','forma_pago_5'])
+    
+
+    user_inputs = dict(request.form)
+    print(user_inputs)
+    
+    
+    return render_template("captura_ingresos.html",
+                           navbar_captura_ingresos = 'active',
+                           title = "Nomina",
+                           centro_de_costo = centro_de_costo,
+                           cuenta = cuenta,
+                           forma_pago = forma_pago,
+                           tipo_ingreso = tipo_ingreso,
+                           velocity_max = 1)
 
 
 if __name__ == "__main__":

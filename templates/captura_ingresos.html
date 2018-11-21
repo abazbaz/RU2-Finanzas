@@ -6,11 +6,11 @@
 {% block content %}
 <h1>{{ title }}</h1>
 <br>
-<div class="panel panel-default" style="height:600px;">
+<div class="panel panel-default" style="height:700px;">
     <div class="panel-heading"> Porfavor registre el gasto llenando el siguiente formulario </div>
       <br>
       
-            <form id="user_inputs" method="POST" action="{{ url_for('data_capture') }}">
+            <form id="user_inputs" method="POST" action="{{ url_for('captura_ingresos') }}">
 
             <!-- https://developer.snapappointments.com/bootstrap-select/examples/ -->
             
@@ -18,12 +18,12 @@
                 </div>
                 
                 <div class="col-sm-10 text-left">
-                    <label for="beneficiario"> Beneficiario </label> 
+                    <label for="tipo_ingreso"> Tipo de Ingreso </label> 
                     <br>
                     <div class="form-group" >
                         
-                       <select class="selectpicker" id="beneficiario" name="beneficiario" onchange='ajaxFirstOnChange()' data-live-search="true" data-max-options="{{ velocity_max | safe }}" title="Seleccione un Beneficiario..." data-width="80%" >
-                            {% for w in vendor %}
+                       <select class="selectpicker" id="tipo_ingreso" name="tipo_ingreso" onchange='ajaxFirstOnChange()' data-live-search="true" data-max-options="{{ velocity_max | safe }}" title="Seleccione un Tipo de Ingreso..." data-width="80%" >
+                            {% for w in tipo_ingreso %}
                                 <option> {{ w | safe }}  </option>
                             {% endfor %}                    
                         </select>    
@@ -31,9 +31,9 @@
                     </div>
         
                     <div class="form-group" >
-                        <label for="categoria"> Categoria </label><br> 
-                        <select class="selectpicker" id="categoria" onchange='ajaxFirstOnChange()' data-live-search="true" data-max-options="{{ velocity_max | safe }}" name="categoria" title="Seleccione una Categoria de Gasto..." data-width="80%" >
-                            {% for w in categoria %}
+                        <label for="centro_de_costo"> Centro de Costo </label><br> 
+                        <select class="selectpicker" id="categoria" onchange='ajaxFirstOnChange()' data-live-search="true" data-max-options="{{ velocity_max | safe }}" name="categoria" title="Seleccione un Centro de Costo..." data-width="80%" >
+                            {% for w in centro_de_costo %}
                                 <option> {{ w | safe }}  </option>
                             {% endfor %}                    
                         </select>  
@@ -43,15 +43,14 @@
                     
                     <div class="form-group" >
 
-                        <label for="sub_categoria">Sub Categoria </label><br> 
-                        <select class="selectpicker" id="sub_categoria" onchange='ajaxFirstOnChange()' data-live-search="true" data-max-options="{{ velocity_max | safe }}" name="sub_categoria" title="Seleccione una Sub Categoria de Gasto..." data-width="80%" >
-                            {% for w in sub_categoria %}
+                        <label for="sub_categoria">Cuenta</label><br> 
+                        <select class="selectpicker" id="cuenta" onchange='ajaxFirstOnChange()' data-live-search="true" data-max-options="{{ velocity_max | safe }}" name="cuenta" title="Seleccione una Cuenta..." data-width="80%" >
+                            {% for w in cuenta %}
                                 <option> {{ w | safe }}  </option>
                             {% endfor %}                    
                         </select>  
                          <tab1><button_main type="capturar" class="button_main button2">  Agregar Nuevo </button_main> </tab1>
-                    </div>
-                    <br>   
+                    </div>  
                     
                     <div class="form-group" >
 
@@ -87,9 +86,16 @@
                         </div>
                     
                     
-
                     <br><br>
-                    <tab1><br><button_main type="capturar" class="button_main button1"> Capturar Egreso</button_main> 
+                    <label for="fname">Monto</label>
+                    <input type="text" id="fname" name="firstname" placeholder="$0.00" style="width:25%;height:35px;border-radius: 4px;border: 1px solid #DCDCDC;">
+
+                    <tab1><label for="lname">Notas</label>
+                    <input type="text" id="lname" name="lastname" placeholder="" style="width:25%;height:35px;border-radius: 4px;border: 1px solid #DCDCDC;"></tab1>
+                    
+
+        
+                    <tab1><tab1><button_main type="capturar" class="button_main button1" style="width:25%;"> Registrar Ingreso </button_main> </tab1></tab1>
                 </div>
                   
                 <div class="col-sm-1 text-left">
