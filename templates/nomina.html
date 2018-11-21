@@ -4,108 +4,37 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-<h1>{{ title }}</h1>
 <br>
-<div class="panel panel-default" style="height:700px;">
-    <div class="panel-heading"> Porfavor registre el gasto llenando el siguiente formulario </div>
-      <br>
-      
-            <form id="user_inputs" method="POST" action="{{ url_for('captura_egresos') }}">
+<label style="font-size: 38px">{{ title }}</label> 
 
-            <!-- https://developer.snapappointments.com/bootstrap-select/examples/ -->
-            
-                <div class="col-sm-1 text-left">
-                </div>
-                
-                <div class="col-sm-10 text-left">
-                    <label for="beneficiario"> Beneficiario </label> 
-                    <br>
-                    <div class="form-group" >
-                        
-                       <select class="selectpicker" id="beneficiario" name="beneficiario" onchange='ajaxFirstOnChange()' data-live-search="true" data-max-options="{{ velocity_max | safe }}" title="Seleccione un Beneficiario..." data-width="80%" >
-                            {% for w in vendor %}
-                                <option> {{ w | safe }}  </option>
-                            {% endfor %}                    
-                        </select>    
-                        <tab1><button_main type="capturar" class="button_main button2">  Agregar Nuevo </button_main> </tab1>
-                    </div>
-        
-                    <div class="form-group" >
-                        <label for="categoria"> Categoria </label><br> 
-                        <select class="selectpicker" id="categoria" onchange='ajaxFirstOnChange()' data-live-search="true" data-max-options="{{ velocity_max | safe }}" name="categoria" title="Seleccione una Categoria de Gasto..." data-width="80%" >
-                            {% for w in categoria %}
-                                <option> {{ w | safe }}  </option>
-                            {% endfor %}                    
-                        </select>  
-                        <tab1><button_main type="capturar" class="button_main button2">  Agregar Nuevo </button_main> </tab1>
-                    </div>
-                   
-                    
-                    <div class="form-group" >
+<a href="/nomina_dar_de_alta" class="button_main button1" style="width:25%;float: right;"> Editar Lista de Empleados </a> 
 
-                        <label for="sub_categoria">Sub Categoria </label><br> 
-                        <select class="selectpicker" id="sub_categoria" onchange='ajaxFirstOnChange()' data-live-search="true" data-max-options="{{ velocity_max | safe }}" name="sub_categoria" title="Seleccione una Sub Categoria de Gasto..." data-width="80%" >
-                            {% for w in sub_categoria %}
-                                <option> {{ w | safe }}  </option>
-                            {% endfor %}                    
-                        </select>  
-                         <tab1><button_main type="capturar" class="button_main button2">  Agregar Nuevo </button_main> </tab1>
-                    </div>  
-                    
-                    <div class="form-group" >
+<br><br><br>
+<div class="panel panel-default">
+    <div class="panel-heading"> Filtros </div>
+    <center>  <br>
+      <label for="tipo_filtro"> Tipo de Filtro </label> 
+      <select class="selectpicker" id="tipo_filtro" onchange='ajaxFirstOnChange()' data-live-search="true" data-max-options="{{ velocity_max | safe }}" name="tipo_filtro" title="Seleccione un Top de Filtro..." data-width="20%" >
+             {% for w in tipo_filtro %}
+                        <option> {{ w | safe }}  </option>
+             {% endfor %}                    
+     </select>
+     
+     <tab1> </tab1><label for="forma_pago"> Filtrar por: </label> 
+      <select class="selectpicker" id="forma_pago" onchange='ajaxFirstOnChange()' data-live-search="true" name="forma_pago" title="Seleccione una o mas opciones..." data-width="20%" >
+             {% for w in opciones %}
+                        <option> {{ w | safe }}  </option>
+             {% endfor %}                    
+     </select>
+          <tab1><a href="/nomina" class="button_main button2" style="width:25%;font-size: 14px"> Filtrar </a> </tab1>
 
-                        <label for="forma_pago"> Forma de Pago </label><br> 
-                        <select class="selectpicker" id="forma_pago" onchange='ajaxFirstOnChange()' data-live-search="true" data-max-options="{{ velocity_max | safe }}" name="forma_pago" title="Seleccione una Forma de Pago..." data-width="80%" >
-                            {% for w in forma_pago %}
-                                <option> {{ w | safe }}  </option>
-                            {% endfor %}                    
-                        </select>  
-                         <tab1><button_main type="capturar" class="button_main button2">  Agregar Nuevo </button_main> </tab1>
-                    </div>
-                    <br> 
-                    
-                    
-                     <label > Fecha de Pago </label>
-                    
-                   <div class='input-group date' id='datetimepicker1' data-provide="datepicker" name="categoria" title="Seleccione una Categoria de Gasto..."  style="width:40%;">
-                         <input type='text' class="form-control" /> 
-                        <span class="input-group-addon"> 
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span> 
-                    </div>
-                    
-                    <br>
-                    
-                     <label > Fecha de Vencimiento </label>
-                        
-                       <div class='input-group date' id='datetimepicker1' data-provide="datepicker" name="categoria" title="Seleccione una Categoria de Gasto..." style="width:40%;">
-                             <input type='text' class="form-control" /> 
-                            <span class="input-group-addon"> 
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span> 
-                        </div>
-                    
-                    
+         </center> 
+         <br>.
+</div>
 
-                    <br><br>
-                    <label for="fname">Monto</label>
-                    <input type="text" id="fname" name="firstname" placeholder="$0.00" style="width:25%;height:35px;border-radius: 4px;border: 1px solid #DCDCDC;">
-
-                    <tab1><label for="lname">Notas</label>
-                    <input type="text" id="lname" name="lastname" placeholder="" style="width:25%;height:35px;border-radius: 4px;border: 1px solid #DCDCDC;"></tab1>
-                    
-
-        
-                    <tab1><tab1><button_main type="capturar" class="button_main button1" style="width:25%;"> Registrar Ingreso </button_main> </tab1></tab1>
-                </div>
-                  
-                <div class="col-sm-1 text-left">
-                </div>
-                
-
-         </form>
-
-
+<div class="panel panel-default" style="height:500px;">
+    <div class="panel-heading"> Resultados </div>
+{{df| safe }}
 </div>
 
 

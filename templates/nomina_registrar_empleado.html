@@ -1,0 +1,96 @@
+
+{% extends "navbar.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+<br>
+<div class="panel panel-default" style="height:700px;">
+    <div class="panel-heading"> Porfavor registre el gasto llenando el siguiente formulario </div>
+      <br>
+      
+            <form id="user_inputs" method="POST" action="{{ url_for('captura_egresos') }}">
+
+            <!-- https://developer.snapappointments.com/bootstrap-select/examples/ -->
+            
+                <div class="col-sm-1 text-left">
+                </div>
+                
+                <div class="col-sm-10 text-left">
+                
+                
+                    <label for="fname">Nombre</label>
+                    <input type="text" id="fname" name="firstname" placeholder="" style="width:25%;height:35px;border-radius: 4px;border: 1px solid #DCDCDC;">
+
+                    <tab1><label for="lname">Apellido</label>
+                    <input type="text" id="lname" name="lastname" placeholder="" style="width:25%;height:35px;border-radius: 4px;border: 1px solid #DCDCDC;"></tab1>
+                
+                    <br><br>
+                
+                    <label for="ubicacion"> Ubicacion </label> 
+                    <br>
+                    <div class="form-group" >
+                        
+                       <select class="selectpicker" id="ubicacion" name="ubicacion" onchange='ajaxFirstOnChange()' data-live-search="true" data-max-options="{{ velocity_max | safe }}" title="Seleccione ubicacion de Trabajo..." data-width="40%" >
+                            {% for w in sucursal %}
+                                <option> {{ w | safe }}  </option>
+                            {% endfor %}                    
+                        </select>    
+                    </div>
+        
+                    
+                    
+                     <label > Fecha de Inicio </label>
+                    
+                   <div class='input-group date' id='datetimepicker1' data-provide="datepicker" name="categoria" title="Seleccione una Categoria de Gasto..."  style="width:40%;">
+                         <input type='text' class="form-control" /> 
+                        <span class="input-group-addon"> 
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span> 
+                    </div>
+                    
+                    <br>
+                    
+                    
+
+                    <br><br>
+                    <label for="fname">Sueldo</label>
+                    <input type="text" id="fname" name="firstname" placeholder="$0.00" style="width:25%;height:35px;border-radius: 4px;border: 1px solid #DCDCDC;">
+
+                    <tab1><label for="lname">Notas</label>
+                    <input type="text" id="lname" name="lastname" placeholder="" style="width:25%;height:35px;border-radius: 4px;border: 1px solid #DCDCDC;"></tab1>
+                    
+
+        
+                    <tab1><tab1><button_main type="submit" class="button_main button1" style="width:25%;"> Dar de Alta </button_main> </tab1></tab1>
+                </div>
+                  
+                <div class="col-sm-1 text-left">
+                </div>
+                
+
+         </form>
+
+
+</div>
+
+
+{% endblock %}
+
+
+{% block chart %}
+	<script>
+       $('.select').selectpicker();
+       
+       
+       $('.datepicker').datepicker();
+       
+       function ajaxFirstOnChange() {
+    var x = document.getElementById("provedor").value;
+    document.getElementById("demo").innerHTML = "You selected: " + x;
+};
+	</script>
+{% endblock %}
+
+

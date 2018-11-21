@@ -94,7 +94,7 @@ def captura_ingresos():
     
     tipo_ingreso = list(['Ventas','Concepto'])
     cuenta = list(['cuenta_1','cuenta_2','cuenta_2','cuenta_4','cuenta_5'])
-    centro_de_costo = list(['centro_1','centro_2','sub_centro_3','centro_4','centro_5'])
+    centro_de_costo = list(['centro_1','centro_2','centro_3','centro_4','centro_5'])
     forma_pago = list(['forma_pago_1','forma_pago_2','forma_pago_3','forma_pago_4','forma_pago_5'])
     
 
@@ -115,23 +115,36 @@ def captura_ingresos():
 
 def nomina():
     
-    tipo_ingreso = list(['Ventas','Concepto'])
-    cuenta = list(['cuenta_1','cuenta_2','cuenta_2','cuenta_4','cuenta_5'])
-    centro_de_costo = list(['centro_1','centro_2','sub_centro_3','centro_4','centro_5'])
-    forma_pago = list(['forma_pago_1','forma_pago_2','forma_pago_3','forma_pago_4','forma_pago_5'])
+    tipo_filtro = list(['Nombre','Fecha Entrada','Sueldo','Sucursal'])
+    opciones = list(['opcion_1','opcion_2','opcion_3','opcion_4','opcion_5'])
+
+    df = pd.read_csv('static_tables/nomina.csv')
+    print(df.head())
+    user_inputs = dict(request.form)
+    print(user_inputs)
     
+    
+    return render_template("nomina.html",
+                           navbar_nomina = 'active',
+                           title = "Nomina",
+                           tipo_filtro = tipo_filtro,
+                           opciones = opciones,
+                           df = df.to_html(classes=["table-bordered", "table-striped", "table-hover"]),
+                           velocity_max = 1)
+    
+@app.route('/nomina_dar_de_alta', methods=['GET', 'POST'])
+def nomina_dar_de_alta():
+    
+    sucursal = list(['sucursal_1','sucursal_2','sucursal_3','sucursal_4','sucursal_5'])
 
     user_inputs = dict(request.form)
     print(user_inputs)
     
     
-    return render_template("captura_ingresos.html",
-                           navbar_captura_ingresos = 'active',
-                           title = "Nomina",
-                           centro_de_costo = centro_de_costo,
-                           cuenta = cuenta,
-                           forma_pago = forma_pago,
-                           tipo_ingreso = tipo_ingreso,
+    return render_template("nomina_registrar_empleado.html",
+                           navbar_nomina = 'active',
+                           title = "Dar de Alta Empleado",
+                           sucursal = sucursal,
                            velocity_max = 1)
 
 
